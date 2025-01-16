@@ -4,20 +4,20 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 app = Flask(__name__)
 
 # Define the model names
-MODEL_1_NAME = "nidra-v1"
-MODEL_2_NAME = "nidra-v2"
+NIDRA_V_1 = "nidra-v1"
+NIDRA_V_2 = "nidra-v2"
 
 # Define the shared prefix
 PREFIX = "Interpret this dream: "
 
 # Load both models and their tokenizers
 print("Loading nidra-v1...")
-tokenizer_1 = AutoTokenizer.from_pretrained(MODEL_1_NAME)
-model_1 = AutoModelForSeq2SeqLM.from_pretrained(MODEL_1_NAME)
+tokenizer_1 = AutoTokenizer.from_pretrained(NIDRA_V_1)
+model_1 = AutoModelForSeq2SeqLM.from_pretrained(NIDRA_V_1)
 
 print("Loading nidra-v2...")
-tokenizer_2 = AutoTokenizer.from_pretrained(MODEL_2_NAME)
-model_2 = AutoModelForSeq2SeqLM.from_pretrained(MODEL_2_NAME)
+tokenizer_2 = AutoTokenizer.from_pretrained(NIDRA_V_2)
+model_2 = AutoModelForSeq2SeqLM.from_pretrained(NIDRA_V_2)
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -53,3 +53,4 @@ def predict():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
+
