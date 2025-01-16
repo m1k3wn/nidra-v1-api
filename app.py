@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import os
 
 app = Flask(__name__)
+
+HF_ACCESS_TOKEN = os.environ.get("HF_ACCESS_TOKEN")
 
 # Define the model names
 NIDRA_V_1 = "nidra-v1"
