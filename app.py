@@ -5,6 +5,8 @@ import os
 app = Flask(__name__)
 
 HF_ACCESS_TOKEN = os.environ.get("HF_ACCESS_TOKEN")
+if not HF_ACCESS_TOKEN:
+    raise ValueError("HF_ACCESS_TOKEN environment variable is not set")
 
 # Define the model names
 NIDRA_V_1 = "nidra-v1"
@@ -15,12 +17,12 @@ PREFIX = "Interpret this dream: "
 
 # Load both models and their tokenizers
 print("Loading nidra-v1...")
-tokenizer_1 = AutoTokenizer.from_pretrained("m1k3wn/nidra-v1")
-model_1 = AutoModelForSeq2SeqLM.from_pretrained("m1k3wn/nidra-v1")
+tokenizer_1 = AutoTokenizer.from_pretrained("m1k3wn/nidra-v1", token=HF_ACCESS_TOKEN)
+model_1 = AutoModelForSeq2SeqLM.from_pretrained("m1k3wn/nidra-v1", token=HF_ACCESS_TOKEN)
 
 print("Loading nidra-v2...")
-tokenizer_2 = AutoTokenizer.from_pretrained("m1k3wn/nidra-v2")
-model_2 = AutoModelForSeq2SeqLM.from_pretrained("m1k3wn/nidra-v2")
+tokenizer_2 = AutoTokenizer.from_pretrained("m1k3wn/nidra-v2", token=HF_ACCESS_TOKEN)
+model_2 = AutoModelForSeq2SeqLM.from_pretrained("m1k3wn/nidra-v2", token=HF_ACCESS_TOKEN)
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -56,4 +58,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
-
