@@ -12,12 +12,12 @@ PREFIX = "Interpret this dream: "
 
 # Load both models and their tokenizers
 print("Loading nidra-v1...")
-tokenizer_1 = AutoTokenizer.from_pretrained(NIDRA_V_1)
-model_1 = AutoModelForSeq2SeqLM.from_pretrained(NIDRA_V_1)
+tokenizer_1 = AutoTokenizer.from_pretrained("m1k3wn/nidra-v1")
+model_1 = AutoModelForSeq2SeqLM.from_pretrained("m1k3wn/nidra-v1")
 
 print("Loading nidra-v2...")
-tokenizer_2 = AutoTokenizer.from_pretrained(NIDRA_V_2)
-model_2 = AutoModelForSeq2SeqLM.from_pretrained(NIDRA_V_2)
+tokenizer_2 = AutoTokenizer.from_pretrained("m1k3wn/nidra-v2")
+model_2 = AutoModelForSeq2SeqLM.from_pretrained("m1k3wn/nidra-v2")
 
 @app.route("/predict", methods=["POST"])
 def predict():
